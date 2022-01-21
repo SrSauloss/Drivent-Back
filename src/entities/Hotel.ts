@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import Room from "./Room";
 
 @Entity("hotels")
 export default class Hotel extends BaseEntity {
@@ -10,4 +11,7 @@ export default class Hotel extends BaseEntity {
 
     @Column()
     image: string;
+
+    @OneToMany(() => Room, room => room.hotel, { eager: true })
+    rooms: Room[];
 }
