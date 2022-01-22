@@ -52,4 +52,12 @@ export default class Hotel extends BaseEntity {
         .orderBy("rooms.id", "ASC")
         .getMany();
     }
+
+    static async getSpecificHotelAndRooms(id: number) {
+      return await this.createQueryBuilder("hotel")
+        .leftJoinAndSelect("hotel.rooms", "rooms")
+        .where("hotel.id = :id", { id })
+        .orderBy("rooms.id", "ASC")
+        .getOne();
+    }
 }

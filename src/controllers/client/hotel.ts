@@ -11,3 +11,9 @@ export async function getAll(req: Request, res: Response) {
 
   res.send(hotels);
 }
+
+export async function getOne(req: Request, res: Response) {
+  const id = +req.params.id;
+  const hotel = await Hotel.getSpecificHotelAndRooms(id);
+  res.send(hotel);
+}
