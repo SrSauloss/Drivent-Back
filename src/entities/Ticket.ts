@@ -12,5 +12,8 @@ export default class Ticket extends BaseEntity {
     hasHotel: boolean;
 
     @Column()
+    isPayed: boolean;
+
+    @Column()
     reservationId: number;
 }
