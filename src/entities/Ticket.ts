@@ -1,4 +1,5 @@
-import {  BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {  BaseEntity, Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm";
+import Reservation from "./Reservation";
 
 @Entity("tickets")
 export default class Ticket extends BaseEntity {
@@ -16,4 +17,7 @@ export default class Ticket extends BaseEntity {
 
     @Column()
     reservationId: number;
+
+    @OneToOne(() => Reservation)
+    reservation: Reservation;
 }
