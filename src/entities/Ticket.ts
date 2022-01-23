@@ -1,5 +1,4 @@
-import {  BaseEntity, Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm";
-import Reservation from "./Reservation";
+import {  BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("tickets")
 export default class Ticket extends BaseEntity {
@@ -7,17 +6,8 @@ export default class Ticket extends BaseEntity {
     id: number;
 
     @Column()
-    isInPerson: boolean;
+    name: string;
 
     @Column()
-    hasHotel: boolean;
-
-    @Column()
-    isPayed: boolean;
-
-    @Column()
-    reservationId: number;
-
-    @OneToOne(() => Reservation)
-    reservation: Reservation;
+    price: number;
 }
