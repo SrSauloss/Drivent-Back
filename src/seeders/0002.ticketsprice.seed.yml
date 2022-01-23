@@ -1,0 +1,13 @@
+seeds:
+  - TicketPrice:
+      id: 1
+      name: "Presencial"
+      price: 250
+  - TicketPrice:
+      id: 2
+      name: "Online"
+      price: 100
+  - TicketPrice:
+      id: 3
+      name: "Hotel"
+      price: 350
