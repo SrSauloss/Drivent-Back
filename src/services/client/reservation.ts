@@ -1,13 +1,12 @@
 
 import ReservationData from "@/interfaces/reservation";
+import Reservation from "@/entities/Reservation";
 
 export async function createReservation(reservationData: ReservationData) {
-  //return await Reservation.createReservation(reservationData);
-  return "oi";
+  return await Reservation.createReservation(reservationData);
 }
 
-export async function findReservation(id: number) {
-  /*const reservation = await Reservation.findOne({ userId: id });
-  return reservation;*/
-  return "oi";
+export async function findReservation(userId: number) {
+  const reservation = await Reservation.getReservation(userId);
+  return reservation;
 }
