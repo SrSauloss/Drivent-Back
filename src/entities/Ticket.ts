@@ -10,4 +10,8 @@ export default class Ticket extends BaseEntity {
 
     @Column()
     price: number;
+
+    static async getAll() {
+      return this.find();
+    }
 }
