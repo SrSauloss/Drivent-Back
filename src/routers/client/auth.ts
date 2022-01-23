@@ -10,3 +10,14 @@ const router = Router();
 router.post("/sign-in", schemaValidatingMiddleware(signInSchema), controller.signIn);
 
 export default router;
+
+/*
+abcd 
+
+1 pra direita:
+dabc
+
+1 pra esquerda:
+bcda
+
+*/
