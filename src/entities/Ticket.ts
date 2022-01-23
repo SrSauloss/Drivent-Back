@@ -11,7 +11,17 @@ export default class Ticket extends BaseEntity {
     @Column()
     price: number;
 
-    static async getAll() {
-      return this.find();
+    static async getTicketsObject() {
+      const tickets = await this.find();
+    
+      const ticketsObject: any = {};
+
+      tickets.forEach((ticket) => {
+        ticketsObject[ticket.name.toLocaleLowerCase()] = {
+          ...ticket,
+        };
+      });    
+
+      return ticketsObject;
     }
 }

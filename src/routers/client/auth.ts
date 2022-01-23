@@ -11,13 +11,3 @@ router.post("/sign-in", schemaValidatingMiddleware(signInSchema), controller.sig
 
 export default router;
 
-/*
-abcd 
-
-1 pra direita:
-dabc
-
-1 pra esquerda:
-bcda
-
-*/
