@@ -1,3 +1,4 @@
+import NotFoundError from "@/errors/NotFoundError";
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import HotelReservation from "./HotelReservation";
 import Room from "./Room";
@@ -59,5 +60,17 @@ export default class Hotel extends BaseEntity {
         .where("hotel.id = :id", { id })
         .orderBy("rooms.id", "ASC")
         .getOne();
+    }
+
+    static async getSpecifiedRoomAndSpecifiedReservation(userId: number, hotelId: number, roomId: number) {
+      const hotel =  await this.createQueryBuilder("hotel")
+        .leftJoinAndSelect("hotel.rooms", "rooms", "rooms.id = :roomId", { roomId })
+        .leftJoinAndSelect("hotel.hotelReservations", "hotelReservations", "hotelReservations.userId = :userId", { userId })
+        .leftJoinAndSelect("hotelReservations.room", "reservationRoom")
+        .where("hotel.id = :hotelId", { hotelId })
+        .getOne();
+
+      if(!hotel || hotel.rooms.length === 0) throw new NotFoundError();
+      return hotel;
     }
 }

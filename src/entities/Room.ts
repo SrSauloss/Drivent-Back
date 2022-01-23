@@ -32,4 +32,14 @@ export default class Room extends BaseEntity {
     getType() {
       return this.roomVacancies === 1 ? "single" : this.roomVacancies === 2 ? "double" : "triple";
     }
+
+    async incrementOcuppiedVacancies() {
+      this.occupiedVacancies++;
+      await this.save();
+    }
+
+    async decrementOcuppiedVacancies() {
+      this.occupiedVacancies--;
+      await this.save();
+    }
 }
