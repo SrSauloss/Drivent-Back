@@ -39,8 +39,9 @@ export default class Reservation extends BaseEntity {
     reservation.ticket.hasHotel = data.hasHotel;
     reservation.ticket.isInPerson = data.isInPerson;
     reservation.ticket.reservationId = reservation.id;
+    reservation.ticket.isPayed = false;
 
-    await reservation.save();
+    await reservation.ticket.save();
 
     reservation.ticketId = reservation.ticket.id;
 
