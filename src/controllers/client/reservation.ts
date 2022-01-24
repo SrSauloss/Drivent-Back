@@ -15,7 +15,7 @@ export async function createReservation(
     const reservation = await service.createReservation(reservationData);
     res.status(201).send(reservation);
   } catch (error) {
-    next(errorHandlingMiddleware);
+    next(error);
   }
 }
 
