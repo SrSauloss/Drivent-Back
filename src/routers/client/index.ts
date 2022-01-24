@@ -21,6 +21,5 @@ router.use("/hotels", hotelRouter);
 router.use("/tickets", ticketRouter);
 router.use("/reservation", tokenValidationMiddleware, reservationRouter);
 router.use("/hotelReservation", tokenValidationMiddleware, hotelReservationRouter);
-router.use("/reservation", tokenValidationMiddleware, reservationRouter);
 
 export default router;
