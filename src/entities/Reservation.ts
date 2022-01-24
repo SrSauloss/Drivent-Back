@@ -4,7 +4,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToOne,
-  ManyToOne,
   JoinColumn,
 } from "typeorm";
 import Ticket from "./Ticket";
@@ -26,7 +25,7 @@ export default class Reservation extends BaseEntity {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Ticket, { eager: true })
+  @OneToOne(() => Ticket, { eager: true })
   @JoinColumn()
   ticket: Ticket;
 
