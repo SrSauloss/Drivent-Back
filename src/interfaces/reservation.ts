@@ -1,6 +1,5 @@
 interface ReservationData{
     userId: number;
-    isInPerson: boolean;
-    hasHotel: boolean;
+    ticketId: number;
 }
 export default ReservationData;

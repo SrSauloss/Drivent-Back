@@ -1,5 +1,4 @@
-import {  BaseEntity, Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm";
-import Reservation from "./Reservation";
+import {  BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("tickets")
 export default class Ticket extends BaseEntity {
@@ -7,17 +6,22 @@ export default class Ticket extends BaseEntity {
     id: number;
 
     @Column()
-    isInPerson: boolean;
+    name: string;
 
     @Column()
-    hasHotel: boolean;
+    price: number;
 
-    @Column()
-    isPayed: boolean;
+    static async getTicketsObject() {
+      const tickets = await this.find();
+    
+      const ticketsObject: any = {};
 
-    @Column()
-    reservationId: number;
+      tickets.forEach((ticket) => {
+        ticketsObject[ticket.name.toLocaleLowerCase()] = {
+          ...ticket,
+        };
+      });    
 
-    @OneToOne(() => Reservation)
-    reservation: Reservation;
+      return ticketsObject;
+    }
 }

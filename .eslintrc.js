@@ -41,6 +41,7 @@ module.exports = {
         },
       },
     ],
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/type-annotation-spacing": [
       "error",
       { after: true, before: false },

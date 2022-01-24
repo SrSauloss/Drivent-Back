@@ -1,20 +1,16 @@
 import { NextFunction, Request, Response } from "express";
-import TicketPrice from "@/entities/TicketPrice";
-import errorHandlingMiddleware from "@/middlewares/errorHandlingMiddleware";
+import * as ticketsService from "@/services/client/tickets";
 
-export async function getPrices(
+export async function getTickets(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const prices = await TicketPrice.getPrices();
-    let pricesObj = {};
-    prices.forEach((price) => {
-      pricesObj = { ...pricesObj, [price.name]: price.price };
-    });
-    res.send(pricesObj);
+    const tickets = await ticketsService.getTickets();
+  
+    res.send(tickets);
   } catch (error) {
-    next(errorHandlingMiddleware);
+    next(error);
   }
 }

@@ -1,10 +1,7 @@
-import TicketPrice from "@/entities/TicketPrice";
+import Ticket from "@/entities/Ticket";
 
-export async function getPrices() {
-  const prices = await TicketPrice.getPrices();
-  let priceObj = {};
-  prices.forEach((item) => {
-    priceObj = { ...priceObj, [item.name]: item.price };
-  });
-  return priceObj;
+export async function getTickets() {
+  const tickets = await Ticket.getTicketsObject();
+
+  return tickets;
 }
