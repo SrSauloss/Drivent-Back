@@ -4,20 +4,21 @@ import ConflictError from "@/errors/ConflictError";
 
 export async function getReservationByIdUser(id: number) {
   const res = await HotelReservation.findOne({ where: { id } });
-  const resulHotelRoom = await HotelReservation.getReservationById(res?.hotelId, res?.userId, res?.roomId);
-  const roomType = resulHotelRoom.room.getType();
 
+  if(!res) return null;
+  const resulHotelRoom = await HotelReservation.getReservationById(res?.hotelId, res?.userId, res?.roomId);
+  const roomType = resulHotelRoom?.room?.getType();
   return {
-    hotel: resulHotelRoom.hotel,
-    room: resulHotelRoom.room,
-    othersInRoom: resulHotelRoom.room.occupiedVacancies - 1,
+    hotel: resulHotelRoom?.hotel,
+    room: resulHotelRoom?.room,
+    othersInRoom: resulHotelRoom?.room.occupiedVacancies - 1,
     roomType,
   };
 }
 
 export async function saveReservation(userId: number, hotelId: number, roomId: number) {
   const hotel = await Hotel.getSpecifiedRoomAndSpecifiedReservation(userId, hotelId, roomId);
-
+  
   if(hotel.rooms[0].getFreeVacancies() === 0) {
     throw new ConflictError("room is full");
   }

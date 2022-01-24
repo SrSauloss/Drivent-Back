@@ -26,7 +26,7 @@ export default class HotelReservation extends BaseEntity {
     @OneToOne(() => User, user => user.hotelReservation)
     user: User;
 
-    static async getReservationById(hotelId: number, roomId: number, userId: number) {
+    static async getReservationById(hotelId: number, userId: number, roomId: number) {
       return await this.createQueryBuilder("hotelReservation")
         .leftJoinAndSelect("hotelReservation.hotel", "hotel", "hotel.id = :hotelId", { hotelId })
         .leftJoinAndSelect("hotelReservation.room", "room", "room.id = :roomId", { roomId })

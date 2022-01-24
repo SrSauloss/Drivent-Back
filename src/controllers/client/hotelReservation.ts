@@ -5,7 +5,7 @@ import httpStatus from "http-status";
 export async function getReservation(req: Request, res: Response) {
   const id = +req.params.id;
 
-  const reservation = hotelReservationService.getReservationByIdUser(id);
+  const reservation = await hotelReservationService.getReservationByIdUser(id);
   res.send(reservation);
 }
 
