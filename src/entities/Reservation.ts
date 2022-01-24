@@ -38,14 +38,23 @@ export default class Reservation extends BaseEntity {
     const reservation = Reservation.create();
     reservation.populateFromData(data);
     await reservation.save();
+
+    return Reservation.getReservation(data.userId);
   }
 
   static async getReservation(userId: number) {
     const reservation = await Reservation.findOne({ userId });
 
+    let price = reservation.ticket.price;
+
+    if (reservation.ticket.name === "Hotel") {
+      price =  600;
+    }
+    
     return {
       id: reservation.ticket.id,
-      type: reservation.ticket.name.toLocaleLowerCase()
+      type: reservation.ticket.name.toLocaleLowerCase(),
+      price
     };
   }
 }
