@@ -15,6 +15,7 @@ export async function signIn(email: string, password: string) {
     userId: user.id
   }, process.env.JWT_SECRET);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const session = await Session.createNew(user.id, token);
 
   return {
