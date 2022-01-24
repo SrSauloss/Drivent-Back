@@ -24,4 +24,12 @@ export default class Room extends BaseEntity {
 
     @OneToMany(() => HotelReservation, hotelReservations => hotelReservations.hotel)
     hotelReservations: HotelReservation[];
+
+    getFreeVacancies() {
+      return this.roomVacancies - this.occupiedVacancies;
+    }
+
+    getType() {
+      return this.roomVacancies === 1 ? "single" : this.roomVacancies === 2 ? "double" : "triple";
+    }
 }
