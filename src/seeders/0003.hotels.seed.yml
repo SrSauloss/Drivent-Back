@@ -1,0 +1,13 @@
+seeds:
+  - Hotel:
+      id: 1
+      name: "Driven Resort"
+      image: "https://viagemeturismo.abril.com.br/wp-content/uploads/2015/12/188153847.jpg?quality=70&strip=info"
+  - Hotel:
+      id: 2
+      name: "Driven Palace"
+      image: "https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/38/86/38862_v9.jpeg"
+  - Hotel:
+      id: 3
+      name: "Driven World"
+      image: "https://exp.cdn-hotels.com/hotels/9000000/8020000/8012100/8012015/8110a330_y.jpg?impolicy=fcrop&w=500&h=333&q=high"
