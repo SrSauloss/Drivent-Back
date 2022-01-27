@@ -1,0 +1,95 @@
+seeds:
+  - Activity:
+      id: 1
+      name: "Minecraft: montando o PC ideal"
+      startsAt: "2022-02-16 09:00:00-03"
+      endsAt: "2022-02-16 10:00:00-03"
+      rooms: 70
+      placeId: 1
+  - Activity:
+      id: 2
+      name: "LoL: montando o PC ideal"
+      startsAt: "2022-02-16 10:00:00-03"
+      endsAt: "2022-02-16 11:00:00-03"
+      rooms: 70
+      placeId: 1
+  - Activity:
+      id: 3
+      name: "Setup para FreeFire no Mobile"
+      startsAt: "2022-02-16 11:00:00-03"
+      endsAt: "2022-02-16 12:00:00-03"
+      rooms: 70
+      placeId: 1
+  - Activity:
+      id: 4
+      name: "Agaragã - Entenda"
+      startsAt: "2022-02-16 09:00:00-03"
+      endsAt: "2022-02-16 11:00:00-03"
+      rooms: 50
+      placeId: 2
+  - Activity:
+      id: 5
+      name: "Aprenda a utilizar o Figma"
+      startsAt: "2022-02-16 11:00:00-03"
+      endsAt: "2022-02-16 12:00:00-03"
+      rooms: 50
+      placeId: 2
+  - Activity:
+      id: 6
+      name: "Novidades no desenvolvimento mobile"
+      startsAt: "2022-02-16 09:00:00-03"
+      endsAt: "2022-02-16 12:00:00-03"
+      rooms: 30
+      placeId: 3
+
+  - Activity:
+      id: 7
+      name: "Javascript: 0.2 + 0.4"
+      startsAt: "2022-02-17 09:00:00-03"
+      endsAt: "2022-02-17 14:30:00-03"
+      rooms: 70
+      placeId: 1
+  - Activity:
+      id: 8
+      name: "Desenvolvimento Mobile"
+      startsAt: "2022-02-17 09:00:00-03"
+      endsAt: "2022-02-17 10:30:00:00-03"
+      rooms: 50
+      placeId: 2
+  - Activity:
+      id: 9
+      name: "Desenvolvimento Desktop"
+      startsAt: "2022-02-17 11:00:00-03"
+      endsAt: "2022-02-17 13:00:00-03"
+      rooms: 50
+      placeId: 2
+  - Activity:
+      id: 10
+      name: "Desenvolvimento Web"
+      startsAt: "2022-02-17 11:00:00-03"
+      endsAt: "2022-02-17 14:00:00-03"
+      rooms: 30
+      placeId: 3
+
+
+  - Activity:
+      id: 11
+      name: "PHP: A linguagem mais segura "
+      startsAt: "2022-02-18 09:30:00-03"
+      endsAt: "2022-02-18 11:00:00-03"
+      rooms: 70
+      placeId: 1
+  - Activity:
+      id: 12
+      name: "React Native vs Angular"
+      startsAt: "2022-02-18 09:00:00-03"
+      endsAt: "2022-02-18 10:00:00:00-03"
+      rooms: 30
+      placeId: 3
+  - Activity:
+      id: 13
+      name: "Os benefícios do Typescript"
+      startsAt: "2022-02-18 10:00:00-03"
+      endsAt: "2022-02-18 11:00:00-03"
+      rooms: 30
+      placeId: 3
