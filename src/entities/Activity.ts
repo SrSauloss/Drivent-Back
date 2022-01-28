@@ -26,22 +26,21 @@ export default class Activity extends BaseEntity {
   @JoinColumn()
   place: Place;
 
-  static separate(activities: Activity[]) {
+  static async separate(activities: Activity[]) {
+    const places: Place[] = await Place.getPlaces();
     const separatedActivities: any = [];
     const hashTable: any = {};
-    let placesCounter = 0;
 
-    activities.forEach(({ id, name, startsAt, endsAt, rooms, place }, i) => {
-      let placeIndex = hashTable[place.name];
-      if (placeIndex === undefined) {
-        hashTable[place.name] = placesCounter;
-        placeIndex = placesCounter;
-        placesCounter++;
-        separatedActivities.push({
-          name: place.name,
-          activities: []
-        });
-      }
+    places.forEach(({ name }, i) => {
+      hashTable[name] = i;
+      separatedActivities.push({ 
+        name,
+        activities: []
+      });
+    });
+
+    activities.forEach(({ id, name, startsAt, endsAt, rooms, place }) => {
+      const placeIndex = hashTable[place.name];
 
       separatedActivities[placeIndex].activities.push({
         id,

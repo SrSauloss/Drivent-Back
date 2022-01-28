@@ -7,4 +7,8 @@ export default class Place extends BaseEntity {
 
   @Column()
   name: string;
+
+  static async getPlaces() {
+    return this.find();
+  }
 }
