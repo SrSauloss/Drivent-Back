@@ -8,7 +8,7 @@ dayjs.extend(timezone);
 
 export default abstract class DateHelper  {
   static getDate(date: Date) {
-    return dayjs(date).tz(timezoneString, true).format("DD/MM/YYYY");
+    return dayjs(date).tz(timezoneString, true).format("YYYY-MM-DD");
   }
 
   static startOfDay(date: string) {
