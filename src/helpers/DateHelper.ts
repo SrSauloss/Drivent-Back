@@ -22,4 +22,8 @@ export default abstract class DateHelper  {
   static updateTimezone(date: string | Date) {
     return dayjs(date).tz(timezoneString, true).toDate();
   }
+
+  static getHour(date: string | Date) {
+    return dayjs(date).format("HH:mm");
+  }
 }

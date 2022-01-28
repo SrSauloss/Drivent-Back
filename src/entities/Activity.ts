@@ -47,8 +47,8 @@ export default class Activity extends BaseEntity {
       separatedActivities[placeIndex].activities.push({
         id,
         name,
-        startsAt: DateHelper.updateTimezone(startsAt),
-        endsAt: DateHelper.updateTimezone(endsAt),
+        startsAt: DateHelper.getHour(startsAt),
+        endsAt: DateHelper.getHour(endsAt),
         rooms,
       });
     });
