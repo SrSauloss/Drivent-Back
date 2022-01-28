@@ -1,7 +1,6 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Between } from "typeorm";
 import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
-import SanitizedActivity from "../interfaces/activity";
 
 @Entity("activities")
 export default class Activity extends BaseEntity {
@@ -74,7 +73,7 @@ export default class Activity extends BaseEntity {
     return days;
   }
 
-  static async getActivitiesByDate(date: string): Promise<SanitizedActivity[]> {
+  static async getActivitiesByDate(date: string) {
     const activities: Activity[] = await this.find({
       where: {
         startsAt: Between(DateHelper.startOfDay(date), DateHelper.endOfDay(date))
