@@ -1,6 +1,7 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Between } from "typeorm";
 import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
+import SanitizedActivity from "../interfaces/activity";
 
 @Entity("activities")
 export default class Activity extends BaseEntity {
@@ -26,6 +27,35 @@ export default class Activity extends BaseEntity {
   @JoinColumn()
   place: Place;
 
+  static separate(activities: Activity[]) {
+    const separatedActivities: any = [];
+    const hashTable: any = {};
+    let placesCounter = 0;
+
+    activities.forEach(({ id, name, startsAt, endsAt, rooms, place }, i) => {
+      let placeIndex = hashTable[place.name];
+      if (placeIndex === undefined) {
+        hashTable[place.name] = placesCounter;
+        placeIndex = placesCounter;
+        placesCounter++;
+        separatedActivities.push({
+          name: place.name,
+          activities: []
+        });
+      }
+
+      separatedActivities[placeIndex].activities.push({
+        id,
+        name,
+        startsAt: DateHelper.updateTimezone(startsAt),
+        endsAt: DateHelper.updateTimezone(endsAt),
+        rooms,
+      });
+    });
+
+    return separatedActivities; 
+  } 
+
   static async getDates(): Promise<string[]> {
     const activities: Activity[] = await this.find();
 
@@ -44,7 +74,13 @@ export default class Activity extends BaseEntity {
     return days;
   }
 
-  static async getActivitiesByDate(date: Date) {
-    return this.find();
+  static async getActivitiesByDate(date: string): Promise<SanitizedActivity[]> {
+    const activities: Activity[] = await this.find({
+      where: {
+        startsAt: Between(DateHelper.startOfDay(date), DateHelper.endOfDay(date))
+      }
+    }
+    );
+    return this.separate(activities);
   }
 }
