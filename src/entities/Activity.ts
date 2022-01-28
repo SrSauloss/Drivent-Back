@@ -65,7 +65,7 @@ export default class Activity extends BaseEntity {
 
       if (!hashTable[date]) {
         hashTable[date] = true;
-        days.push(date.replace(/\//g, "-"));
+        days.push(date);
       }
     });
 
