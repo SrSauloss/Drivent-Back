@@ -12,7 +12,7 @@ export async function getDates(req: Request, res: Response,  next: NextFunction)
 }
 
 export async function getActivitiesByDate(req: Request, res: Response,  next: NextFunction) {
-  const { date } = req.body;
+  const date = req.query.date.toString();
   try{
     const dates = await activityService.getActivitiesByDate(date);
     res.send(dates);
