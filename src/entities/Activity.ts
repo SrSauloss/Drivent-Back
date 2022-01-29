@@ -20,7 +20,7 @@ export default class Activity extends BaseEntity {
   @Column()
   rooms: number;
 
-  @Column()
+  @Column({ unique: false })
   placeId: number;
 
   @OneToOne(() => Place, { eager: true })
