@@ -81,4 +81,14 @@ describe("GET /reservation", () => {
 
     expect(result.status).toEqual(404);
   });
+
+  it("Should return 401 for invalid token", async() => {
+    const token = "123";
+
+    const result = await supertest(app)
+      .get("/reservation")
+      .set("Authorization", `Bearer ${token}`);
+
+    expect(result.status).toEqual(401);
+  });
 });
