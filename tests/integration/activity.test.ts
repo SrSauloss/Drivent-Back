@@ -1,5 +1,5 @@
 import "@/setup";
-import app, { init } from "../../src/app";
+import app from "../../src/app";
 import supertest from "supertest";
 import { openConnection, closeConnection, clearDatabase } from "../utils/database";
 import { createSession } from "../factories/session.factory";
