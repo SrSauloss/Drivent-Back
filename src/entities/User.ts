@@ -17,7 +17,7 @@ export default class User extends BaseEntity {
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
 
-  @OneToOne(() => HotelReservation, hotelReservation => hotelReservation.user, { onDelete: "CASCADE" })
+  @OneToOne(() => HotelReservation, hotelReservation => hotelReservation.user)
   hotelReservation: HotelReservation;
 
   static async createNew(email: string, password: string) {

@@ -22,11 +22,11 @@ export default class Reservation extends BaseEntity {
   @Column()
   ticketId: number;
 
-  @OneToOne(() => User, { onDelete: "CASCADE" })
+  @OneToOne(() => User)
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Ticket, { eager: true, onDelete: "CASCADE" })
+  @ManyToOne(() => Ticket, { eager: true })
   @JoinColumn()
   ticket: Ticket;
 

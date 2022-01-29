@@ -30,7 +30,7 @@ export default class Address extends BaseEntity {
   @Column()
   enrollmentId: number;
 
-  @OneToOne(() => Enrollment, (enrollment: Enrollment) => enrollment.address, { onDelete: "CASCADE" })
+  @OneToOne(() => Enrollment, (enrollment: Enrollment) => enrollment.address)
   @JoinColumn()
   enrollment: Enrollment;
 }

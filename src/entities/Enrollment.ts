@@ -23,7 +23,7 @@ export default class Enrollment extends BaseEntity {
   @Column()
   userId: number;
 
-  @OneToOne(() => Address, (address) => address.enrollment, { eager: true, onDelete: "CASCADE" })
+  @OneToOne(() => Address, (address) => address.enrollment, { eager: true })
   address: Address;
 
   populateFromData(data: EnrollmentData) {

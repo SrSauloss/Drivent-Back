@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Between } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Between } from "typeorm";
 import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
 
@@ -22,7 +22,7 @@ export default class Activity extends BaseEntity {
   @Column()
   placeId: number;
 
-  @OneToOne(() => Place, { eager: true, onDelete: "CASCADE"  })
+  @ManyToOne(() => Place, { eager: true })
   @JoinColumn()
   place: Place;
 

@@ -14,7 +14,7 @@ export default class Hotel extends BaseEntity {
     @Column()
     image: string;
 
-    @OneToMany(() => Room, room => room.hotel, { eager: true, onDelete: "CASCADE" })
+    @OneToMany(() => Room, room => room.hotel, { eager: true })
     rooms: Room[];
 
     @OneToMany(() => HotelReservation, hotelReservations => hotelReservations.hotel)

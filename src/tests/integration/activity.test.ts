@@ -1,5 +1,5 @@
 import "../../setup";
-import app, { init } from "@/app";
+import app from "@/app";
 import { openConnection, closeConnection, clearDatabase } from "../utils/database";
 
 beforeAll(async() => {

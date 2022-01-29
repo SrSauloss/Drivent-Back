@@ -15,6 +15,7 @@
     "eslint": "npx eslint src",
     "eslint:fix": "npx eslint --fix src",
     "seed": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 ts-node -r tsconfig-paths/register ./src/seeders",
+    "seed:test": "NODE_ENV=test NODE_TLS_REJECT_UNAUTHORIZED=0 ts-node -r tsconfig-paths/register ./src/seeders",
     "prepare": "husky install"
   },
   "keywords": [],
