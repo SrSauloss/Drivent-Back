@@ -1,19 +1,19 @@
 import { getConnection } from "typeorm";
-import { init } from "@/app";
-import Enrollment from "@/entities/Enrollment";
-import Address from "@/entities/Address";
-import HotelReservation from "@/entities/HotelReservation";
-import Reservation from "@/entities/Reservation";
-import Session from "@/entities/Session";
-import User from "@/entities/User";
+import { init } from "../../src/app";
+import Enrollment from "../../src/entities/Enrollment";
+import Address from "../../src/entities/Address";
+import HotelReservation from "../../src/entities/HotelReservation";
+import Reservation from "../../src/entities/Reservation";
+import Session from "../../src/entities/Session";
+import User from "../../src/entities/User";
 
 export async function clearDatabase() {
-  Address.clear();
-  Enrollment.clear();
-  HotelReservation.clear();
-  Reservation.clear();
-  Session.clear();
-  User.clear();
+  await Address.delete({});
+  await Enrollment.delete({});
+  await HotelReservation.delete({});
+  await Reservation.delete({});
+  await Session.delete({});
+  await User.delete({});
 }
 
 export async function openConnection() {

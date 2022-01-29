@@ -1,11 +1,11 @@
-import "../../src/setup";
-import app from "../../src/app";
+import "@/setup";
+import app, { init } from "../../src/app";
 import supertest from "supertest";
 import { openConnection, closeConnection, clearDatabase } from "../utils/database";
 
 beforeAll(async() => {
-  await openConnection();
-//  await clearDatabase();
+  await init();
+  await clearDatabase();
 });
 
 afterEach(async() => {
