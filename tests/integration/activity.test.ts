@@ -1,5 +1,5 @@
-import "../../setup";
-import app from "@/app";
+import "../../src/setup";
+import app from "../../src/app";
 import supertest from "supertest";
 import { openConnection, closeConnection, clearDatabase } from "../utils/database";
 
