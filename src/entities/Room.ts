@@ -19,10 +19,10 @@ export default class Room extends BaseEntity {
     @Column()
     roomVacancies: number;
 
-    @ManyToOne(() => Hotel, hotel => hotel.rooms)
+    @ManyToOne(() => Hotel, hotel => hotel.rooms, { onDelete: "CASCADE" })
     hotel: Hotel;
 
-    @OneToMany(() => HotelReservation, hotelReservations => hotelReservations.hotel)
+    @OneToMany(() => HotelReservation, hotelReservations => hotelReservations.hotel, { onDelete: "CASCADE" })
     hotelReservations: HotelReservation[];
 
     getFreeVacancies() {

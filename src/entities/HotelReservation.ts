@@ -17,13 +17,13 @@ export default class HotelReservation extends BaseEntity {
     @Column()
     roomId: number;
 
-    @ManyToOne(() => Hotel, hotel => hotel.hotelReservations)
+    @ManyToOne(() => Hotel, hotel => hotel.hotelReservations, { onDelete: "CASCADE" })
     hotel: Hotel;
 
-    @ManyToOne(() => Room, room => room.hotelReservations)
+    @ManyToOne(() => Room, room => room.hotelReservations, { onDelete: "CASCADE" })
     room: Room;
 
-    @OneToOne(() => User, user => user.hotelReservation)
+    @OneToOne(() => User, user => user.hotelReservation, { onDelete: "CASCADE" })
     user: User;
 
     static async getReservationById(hotelId: number, userId: number, roomId: number) {

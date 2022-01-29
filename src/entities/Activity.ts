@@ -22,7 +22,7 @@ export default class Activity extends BaseEntity {
   @Column()
   placeId: number;
 
-  @OneToOne(() => Place, { eager: true })
+  @OneToOne(() => Place, { eager: true, onDelete: "CASCADE"  })
   @JoinColumn()
   place: Place;
 
