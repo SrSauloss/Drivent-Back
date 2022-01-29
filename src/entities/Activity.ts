@@ -2,6 +2,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColum
 import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
 import ActivityReservation from "./ActivityReservation";
+import UnprocessableEntityError from "@/errors/UnprocessableEntityError";
 
 @Entity("activities")
 export default class Activity extends BaseEntity {
@@ -84,5 +85,15 @@ export default class Activity extends BaseEntity {
     }
     );
     return this.separate(activities);
+  }
+
+  static async subscribe(userId: number, activityId: number) {
+    const activity = await this.findOne({ where: { id: activityId } });
+    if(!activity) {
+      throw new UnprocessableEntityError("Atividade inexistente");
+    }
+    console.log(activity);
+
+    return "uhuuu";
   }
 }

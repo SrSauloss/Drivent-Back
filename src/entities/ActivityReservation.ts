@@ -15,4 +15,9 @@ export default class ActivityReservation extends BaseEntity {
 
     @ManyToOne(() => Activity, activity => activity.activities)
     activities: Activity;
+
+    static async getActivitiesReservationByUserId(userId: number) {
+      const activities = await this.find({ where: { userId } });
+      return activities;
+    }
 }
