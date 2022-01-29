@@ -34,4 +34,8 @@ export default class Ticket extends BaseEntity {
         .execute();
       return array[0];
     }
+
+    static async getTicketById(id: number) {
+      return this.findOne({ id });
+    }
 }
