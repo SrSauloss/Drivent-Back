@@ -54,7 +54,7 @@ describe("GET /activities", () => {
 
   it("Should return 422 when date is invalid", async() => {
     const { token } = await createSession();
-    const result = await supertest(app).get("/activities?05-05-2022").set("Authorization", `Bearer ${token}`);
+    const result = await supertest(app).get("/activities?date=05-05-2022").set("Authorization", `Bearer ${token}`);
     expect(result.status).toEqual(422);
   });
 });
