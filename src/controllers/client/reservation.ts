@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 
 import ReservationData from "@/interfaces/reservation";
 import * as service from "@/services/client/reservation";
-import errorHandlingMiddleware from "@/middlewares/errorHandlingMiddleware";
 
 export async function createReservation(
   req: Request,
