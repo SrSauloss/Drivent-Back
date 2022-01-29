@@ -35,5 +35,4 @@ describe("POST /reservation/new", () => {
     expect(result.body.type).toEqual(ticket.name.toLocaleLowerCase());
     expect(result.body.price).toEqual(ticket.price);
   });
-
-
+});
