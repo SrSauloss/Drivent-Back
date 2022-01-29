@@ -1,6 +1,7 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Between } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Between, OneToMany } from "typeorm";
 import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
+import ActivityReservation from "./ActivityReservation";
 
 @Entity("activities")
 export default class Activity extends BaseEntity {
@@ -25,6 +26,9 @@ export default class Activity extends BaseEntity {
   @OneToOne(() => Place, { eager: true })
   @JoinColumn()
   place: Place;
+
+  @OneToMany(() => ActivityReservation, activity => activity.activities)
+  activities: ActivityReservation;
 
   static async separate(activities: Activity[]) {
     const places: Place[] = await Place.getPlaces();
