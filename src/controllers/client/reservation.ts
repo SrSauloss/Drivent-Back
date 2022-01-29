@@ -25,6 +25,6 @@ export async function findReservation(req: Request, res: Response, next: NextFun
     const reservation = await service.findReservation(userId);
     res.status(200).send(reservation);
   } catch (error) {
-    next(errorHandlingMiddleware);
+    next(error);
   }
 }

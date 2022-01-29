@@ -15,5 +15,10 @@ export async function createReservation(reservationData: ReservationData) {
 
 export async function findReservation(userId: number) {
   const reservation = await Reservation.getReservation(userId);
+
+  if (!reservation) {
+    throw new NotFoundError("Couldn't find user's reservation");
+  }
+
   return reservation;
 }

@@ -46,6 +46,10 @@ export default class Reservation extends BaseEntity {
   static async getReservation(userId: number) {
     const reservation = await Reservation.findOne({ userId });
 
+    if (!reservation) {
+      return;
+    }
+
     let price = reservation.ticket.price;
 
     if (reservation.ticket.name === "Hotel") {

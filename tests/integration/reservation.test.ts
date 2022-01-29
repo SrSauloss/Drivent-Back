@@ -71,4 +71,14 @@ describe("GET /reservation", () => {
     expect(result.status).toEqual(200);
     expect(result.body).toEqual(reservation);
   });
+
+  it("Should return 404 for users without a reservation", async() => {
+    const session = await sessionFactory.createSession();
+
+    const result = await supertest(app)
+      .get("/reservation")
+      .set("Authorization", `Bearer ${session.token}`);
+
+    expect(result.status).toEqual(404);
+  });
 });
