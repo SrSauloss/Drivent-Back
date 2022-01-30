@@ -11,7 +11,7 @@ seeds:
       name: "LoL: montando o PC ideal"
       startsAt: "2022-02-16 10:00:00"
       endsAt: "2022-02-16 11:00:00"
-      rooms: 70
+      rooms: 0
       placeId: 1
   - Activity:
       id: 3
@@ -70,7 +70,6 @@ seeds:
       endsAt: "2022-02-17 14:00:00"
       rooms: 30
       placeId: 3
-
 
   - Activity:
       id: 11

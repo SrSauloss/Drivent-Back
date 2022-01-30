@@ -1,7 +1,8 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany } from "typeorm";
 import bcrypt from "bcrypt";
 import EmailNotAvailableError from "@/errors/EmailNotAvailable";
 import HotelReservation from "./HotelReservation";
+import ActivityReservation from "./ActivityReservation";
 
 @Entity("users")
 export default class User extends BaseEntity {
@@ -19,6 +20,9 @@ export default class User extends BaseEntity {
 
   @OneToOne(() => HotelReservation, hotelReservation => hotelReservation.user)
   hotelReservation: HotelReservation;
+
+  @OneToMany(() => ActivityReservation, activityReservation => activityReservation.user, { eager: true })
+  activity: ActivityReservation;
 
   static async createNew(email: string, password: string) {
     await this.validateDuplicateEmail(email);
