@@ -3,6 +3,7 @@ import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
 import ActivityReservation from "./ActivityReservation";
 import UnprocessableEntityError from "@/errors/UnprocessableEntityError";
+import ConflictError from "@/errors/ConflictError";
 
 @Entity("activities")
 export default class Activity extends BaseEntity {
@@ -28,7 +29,10 @@ export default class Activity extends BaseEntity {
   @JoinColumn()
   place: Place;
 
-  @OneToMany(() => ActivityReservation, activity => activity.activities)
+  @OneToMany(
+    () => ActivityReservation,
+    activityReservation => activityReservation.activity
+  )
   activities: ActivityReservation;
 
   static async separate(activities: Activity[]) {
@@ -87,12 +91,42 @@ export default class Activity extends BaseEntity {
     return this.separate(activities);
   }
 
+  static verifyConflict(activity: Activity, activities: ActivityReservation[]) {
+    for(let i = 0; i < activities.length; ++i) {
+      const actual = activities[i];
+      if(actual.activity.startsAt.toDateString() === activity.startsAt.toDateString()) {
+        if((actual.activity.startsAt >= activity.startsAt && actual.activity.startsAt < activity.endsAt) ||
+        (actual.activity.startsAt >= activity.startsAt && actual.activity.endsAt <= activity.endsAt) ||
+        (actual.activity.startsAt <= activity.startsAt && actual.activity.endsAt >= activity.endsAt) ||
+        (actual.activity.endsAt >= activity.startsAt && actual.activity.endsAt <= activity.endsAt) ) {
+          throw new ConflictError("Usuário já está inscrito em uma atividade no mesmo horário");
+        }        
+      }
+    }
+  }
+
   static async subscribe(userId: number, activityId: number) {
     const activity = await this.findOne({ where: { id: activityId } });
+
     if(!activity) {
       throw new UnprocessableEntityError("Atividade inexistente");
     }
-    console.log(activity);
+
+    if(activity.rooms === 0) {
+      throw new UnprocessableEntityError("Não há vagas para está Atividade");
+    }
+
+    const userActivities = await ActivityReservation.findOne({ where: { userId, activityId: activityId } });
+    if(userActivities) {
+      throw new UnprocessableEntityError("Usuário já está inscrito nessa atividade");
+    }
+
+    const allActivities = await ActivityReservation.find({ where: { userId }, relations: ["activity"] });
+    this.verifyConflict(activity, allActivities);
+    //const allActivities = await ActivityReservation.find
+    activity.rooms -= 1;
+    // await activity.save();
+    // await ActivityReservation.insert({ userId, activityId });
 
     return "uhuuu";
   }
