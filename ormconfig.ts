@@ -8,7 +8,7 @@ export default {
   url: DATABASE_URL,
   migrationsTableName: "migrations",
   entities: ["dist/entities/*.js"],
-  migrations: ["dist/migrations/*.js"],
+  migrations: ["dist/src/migrations/*.js"],
   extra: {
     ssl: {
       rejectUnauthorized: false,
