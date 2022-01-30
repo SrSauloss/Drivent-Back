@@ -98,9 +98,9 @@ export default class Activity extends BaseEntity {
         if((actual.activity.startsAt >= activity.startsAt && actual.activity.startsAt < activity.endsAt) ||
         (actual.activity.startsAt >= activity.startsAt && actual.activity.endsAt <= activity.endsAt) ||
         (actual.activity.startsAt <= activity.startsAt && actual.activity.endsAt >= activity.endsAt) ||
-        (actual.activity.endsAt >= activity.startsAt && actual.activity.endsAt <= activity.endsAt) ) {
+        (actual.activity.endsAt > activity.startsAt && actual.activity.endsAt < activity.endsAt)) {
           throw new ConflictError("Usuário já está inscrito em uma atividade no mesmo horário");
-        }        
+        } 
       }
     }
   }
