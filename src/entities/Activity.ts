@@ -123,11 +123,8 @@ export default class Activity extends BaseEntity {
 
     const allActivities = await ActivityReservation.find({ where: { userId }, relations: ["activity"] });
     this.verifyConflict(activity, allActivities);
-    //const allActivities = await ActivityReservation.find
     activity.rooms -= 1;
-    // await activity.save();
-    // await ActivityReservation.insert({ userId, activityId });
-
-    return "uhuuu";
+    await activity.save();
+    await ActivityReservation.insert({ userId, activityId });
   }
 }
