@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Between, OneToMany } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Between, OneToMany } from "typeorm";
 import Place from "./Place";
 import DateHelper from "../helpers/DateHelper";
 import ActivityReservation from "./ActivityReservation";

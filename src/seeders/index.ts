@@ -12,6 +12,7 @@ import connectDatabase from "@/database";
 async function runSeedFile(filename: string, connection: Connection) {
   try {
     const content = fs.readFileSync(path.join(__dirname, filename));
+
     const file: any = yaml.load(content.toString());
     
     const seeds: any = file["seeds"];
