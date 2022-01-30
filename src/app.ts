@@ -8,8 +8,8 @@ import "reflect-metadata";
 import connectDatabase from "@/database";
 import errorHandlingMiddleware from "@/middlewares/errorHandlingMiddleware";
 import router from "@/routers";
-import Hotel from "./entities/Hotel";
-import Room from "./entities/Room";
+import Hotel from "@/entities/Hotel";
+import Room from "@/entities/Room";
 
 const app = express();
 app.use(cors());
