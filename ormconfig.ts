@@ -1,13 +1,14 @@
 import dotenv from "dotenv";
-
 dotenv.config();
+
+const DATABASE_URL = process.env.NODE_ENV !== "test" ? process.env.DATABASE_URL : process.env.DATABASE_URL+"_test";
 
 export default {
   type: "postgres",
-  url: process.env.DATABASE_URL,
+  url: DATABASE_URL,
   migrationsTableName: "migrations",
   entities: ["dist/entities/*.js"],
-  migrations: ["dist/migrations/*.js"],
+  migrations: ["dist/src/migrations/*.js"],
   extra: {
     ssl: {
       rejectUnauthorized: false,
