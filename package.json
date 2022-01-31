@@ -10,10 +10,12 @@
     "dev": "NODE_ENV=development npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"npm run eslint:fix && ts-node -r tsconfig-paths/register --files src/server.ts\"",
     "typeorm": "ts-node ./node_modules/typeorm/cli",
     "migration:generate": "npm run build && npm run typeorm migration:generate --",
-    "migration:run": "npm run build && npm run typeorm migration:run",
+    "migration:run": "npm run build && NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=production npm run typeorm migration:run",
+    "migration:test": "npm run build && NODE_ENV=test npm run typeorm migration:run",
     "eslint": "npx eslint src",
     "eslint:fix": "npx eslint --fix src",
     "seed": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 ts-node -r tsconfig-paths/register ./src/seeders",
+    "seed:test": "NODE_ENV=test NODE_TLS_REJECT_UNAUTHORIZED=0 ts-node -r tsconfig-paths/register ./src/seeders",
     "prepare": "husky install"
   },
   "keywords": [],
