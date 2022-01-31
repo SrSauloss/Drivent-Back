@@ -24,4 +24,18 @@ export default class Ticket extends BaseEntity {
 
       return ticketsObject;
     }
+
+    static async getRandomTicket() {
+      const array = await this.createQueryBuilder()
+        .select("*")
+        .from(Ticket, "ticket")
+        .orderBy("RANDOM()")
+        .limit(1)
+        .execute();
+      return array[0];
+    }
+
+    static async getTicketById(id: number) {
+      return this.findOne({ id });
+    }
 }
