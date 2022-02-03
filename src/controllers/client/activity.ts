@@ -11,15 +11,6 @@ export async function getDates(req: Request, res: Response,  next: NextFunction)
   }
 }
 
-export async function getActivitiesData(req: Request, res: Response,  next: NextFunction) {
-  try{
-    const data = await activityService.getActivitiesData();
-    res.send(data);
-  }catch(error) {
-    next(error);
-  }
-}
-
 export async function getActivitiesByDate(req: Request, res: Response,  next: NextFunction) {
   const date = req.query.date.toString();
   try{

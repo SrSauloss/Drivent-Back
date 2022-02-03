@@ -54,8 +54,8 @@ export default class Activity extends BaseEntity {
       separatedActivities[placeIndex].activities.push({
         id,
         name,
-        startsAt: DateHelper.getHourMin(startsAt),
-        endsAt: DateHelper.getHourMin(endsAt),
+        startsAt: DateHelper.getHour(startsAt),
+        endsAt: DateHelper.getHour(endsAt),
         rooms,
       });
     });
@@ -63,8 +63,8 @@ export default class Activity extends BaseEntity {
     return separatedActivities; 
   } 
 
-  static async getDates(preActivities?: Activity[]): Promise<string[]> {
-    const activities: Activity[] = preActivities || await this.find();
+  static async getDates(): Promise<string[]> {
+    const activities: Activity[] = await this.find();
 
     const days: any[] = [];
     const hashTable: any = {};
@@ -79,66 +79,6 @@ export default class Activity extends BaseEntity {
     });
 
     return days;
-  }
-
-  static async getActivitiesData() {
-    const activities: Activity[] = await this.createQueryBuilder()
-      .select("activities.startsAt, activities.endsAt")
-      .from(Activity, "activities")
-      .orderBy("activities.startsAt")
-      .execute();
-
-    const activitiesEnd: Activity[] = await this.createQueryBuilder()
-      .select("activities.startsAt, activities.endsAt")
-      .from(Activity, "activities")
-      .orderBy("activities.endsAt")
-      .execute();
-
-    const datesTable: any = {};
-    
-    activities.forEach((activity, i) => {
-      const dateOfYear = DateHelper.getDate(activity.startsAt);
-
-      if (!datesTable[dateOfYear]) {
-        datesTable[dateOfYear] = [];
-      } 
-
-      datesTable[dateOfYear].push({
-        startsAt: activity.startsAt,
-        endsAt: activitiesEnd[i].endsAt
-      });
-    }, {});
-    
-    if (Object.keys(datesTable).length === 0) {
-      return;
-    }
-
-    const dates = Object.keys(datesTable);
-    let totalHours = 0;
-
-    dates.forEach((date) => {
-      const currentDate = datesTable[date];
-      const lastIndex = currentDate.length - 1;
-      const diff = DateHelper.getDiff(currentDate[0].startsAt, currentDate[lastIndex].endsAt);
-      totalHours += diff;
-    });
-
-    totalHours /= 3600000; 
-    totalHours = Math.abs(totalHours);
-
-    const firstDay = datesTable[dates[0]];
-    const lastDay = datesTable[dates[dates.length - 1]];
-
-    const lastIndex = lastDay.length - 1;
-
-    return {
-      year: DateHelper.getYear(firstDay[0].startsAt),
-      startDay: DateHelper.getDay(firstDay[0].startsAt),
-      startMonth: DateHelper.getMonth(firstDay[0].startsAt),
-      endDay: DateHelper.getDay(lastDay[lastIndex].startsAt),
-      endMonth: DateHelper.getMonth(lastDay[lastIndex].startsAt),
-      totalHours: totalHours,
-    };
   }
 
   static async getActivitiesByDate(date: string) {

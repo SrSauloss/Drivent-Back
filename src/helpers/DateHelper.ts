@@ -23,27 +23,7 @@ export default abstract class DateHelper  {
     return dayjs(date).tz(timezoneString, true).toDate();
   }
 
-  static getHourMin(date: string | Date) {
+  static getHour(date: string | Date) {
     return dayjs(date).format("HH:mm");
-  }
-
-  static getYear(date: string | Date) {
-    return dayjs(date).format("YYYY");
-  }
-
-  static getDay(date: string | Date) {
-    return dayjs(date).format("DD");
-  }
-
-  static getMonth(date: string | Date) {
-    return dayjs(date).format("M");
-  }
-
-  static isBefore(date1: string | Date, date2: string | Date) {
-    return dayjs(date1).isBefore(dayjs(date2));
-  }
-
-  static getDiff(date1: string | Date, date2: string | Date) {
-    return dayjs(date1).diff(dayjs(date2));
   }
 }

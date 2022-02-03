@@ -8,10 +8,6 @@ export async function getActivitiesByDate(date: string) {
   return  Activity.getActivitiesByDate(date);
 }
 
-export async function getActivitiesData() {
-  return  Activity.getActivitiesData();
-}
-
 export async function saveInscription(userId: number, activityId: number) {
   const resul = await Activity.subscribe(userId, activityId);
   return resul;
